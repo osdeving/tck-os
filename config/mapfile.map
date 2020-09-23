@@ -1,0 +1,468 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000100000                phys = 0x100000
+
+.text           0x0000000000100000     0x1000
+                0x0000000000100000                textStart = .
+ *(.text)
+ .text          0x0000000000100000       0x2c start.o
+                0x0000000000100000                start
+ *(.text.*)
+ *(.rodata.*)
+ *(.rdata.*)
+                0x0000000000101000                . = ALIGN (0x1000)
+ *fill*         0x000000000010002c      0xfd4 00
+                0x0000000000101000                textEnd = .
+
+.data           0x0000000000101000        0x0
+                0x0000000000101000                dataStart = .
+ *(.data*)
+                0x0000000000101000                . = ALIGN (0x1000)
+                0x0000000000101000                dataEnd = .
+
+.bss            0x0000000000101000        0x0
+                0x0000000000101000                bssStart = .
+ *(.common)
+ *(.bss*)
+                0x0000000000101000                . = ALIGN (0x1000)
+                0x0000000000101000                bssEnd = .
+                0x0000000000101000                end = .
+LOAD start.o
+OUTPUT(../bin/kernel.sys elf32-i386)
+
+.comment        0x0000000000000000       0x28
+ .comment       0x0000000000000000       0x28 start.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000100000                phys = 0x100000
+
+.text           0x0000000000100000     0x1000
+                0x0000000000100000                textStart = .
+ *(.text)
+ .text          0x0000000000100000       0x2c start.o
+                0x0000000000100000                start
+ .text          0x000000000010002c       0x24 main.o
+                0x000000000010002c                main
+ .text          0x0000000000100050       0x9e string.o
+                0x00000000001000a1                memsetw
+                0x0000000000100050                memcpy
+                0x000000000010007b                memset
+                0x00000000001000ce                strlen
+ *fill*         0x00000000001000ee        0x2 00
+ .text          0x00000000001000f0      0x387 console.o
+                0x0000000000100198                setforeground
+                0x00000000001001df                getforeground
+                0x0000000000100436                clear
+                0x00000000001001f8                move_cursor
+                0x000000000010040f                putc
+                0x00000000001001ba                setbackground
+                0x000000000010026c                kprintf
+                0x00000000001001ee                getbackground
+ *fill*         0x0000000000100477        0x1 00
+ .text          0x0000000000100478       0x1b utils.o
+                0x0000000000100478                inportb
+                0x0000000000100485                outportb
+ *(.text.*)
+ *(.rodata.*)
+ .rodata.str1.1
+                0x0000000000100493        0xe main.o
+ .rodata.str1.1
+                0x00000000001004a1       0x11 console.o
+ *(.rdata.*)
+                0x0000000000101000                . = ALIGN (0x1000)
+ *fill*         0x00000000001004b2      0xb4e 00
+                0x0000000000101000                textEnd = .
+
+.rodata         0x0000000000101000      0x16c
+ .rodata        0x0000000000101000      0x16c console.o
+
+.rel.dyn        0x000000000010116c        0x0
+ .rel.text      0x0000000000000000        0x0 main.o
+
+.data           0x000000000010116c      0xe94
+                0x000000000010116c                dataStart = .
+ *(.data*)
+ .data          0x000000000010116c        0x0 main.o
+ .data          0x000000000010116c        0x0 string.o
+ .data          0x000000000010116c        0x2 console.o
+ *fill*         0x000000000010116e        0x2 00
+ .data          0x0000000000101170        0x0 utils.o
+                0x0000000000102000                . = ALIGN (0x1000)
+ *fill*         0x0000000000101170      0xe90 00
+                0x0000000000102000                dataEnd = .
+
+.bss            0x0000000000102000     0x1000
+                0x0000000000102000                bssStart = .
+ *(.common)
+ *(.bss*)
+ .bss           0x0000000000102000        0x0 main.o
+ .bss           0x0000000000102000        0x0 string.o
+ .bss           0x0000000000102000        0x8 console.o
+ .bss           0x0000000000102008        0x0 utils.o
+                0x0000000000103000                . = ALIGN (0x1000)
+ *fill*         0x0000000000102008      0xff8 00
+                0x0000000000103000                bssEnd = .
+                0x0000000000103000                end = .
+LOAD start.o
+LOAD main.o
+LOAD string.o
+LOAD console.o
+LOAD utils.o
+OUTPUT(../bin/kernel.sys elf32-i386)
+
+.comment        0x0000000000000000       0xd0
+ .comment       0x0000000000000000       0x28 start.o
+ .comment       0x0000000000000028       0x2a main.o
+ .comment       0x0000000000000052       0x2a string.o
+ .comment       0x000000000000007c       0x2a console.o
+ .comment       0x00000000000000a6       0x2a utils.o
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 main.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 string.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 console.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 utils.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000100000                phys = 0x100000
+
+.text           0x0000000000100000     0x1000
+                0x0000000000100000                textStart = .
+ *(.text)
+ .text          0x0000000000100000       0x28 start.o
+                0x0000000000100000                start
+ .text          0x0000000000100028       0x24 main.o
+                0x0000000000100028                main
+ .text          0x000000000010004c       0x9e string.o
+                0x000000000010009d                memsetw
+                0x000000000010004c                memcpy
+                0x0000000000100077                memset
+                0x00000000001000ca                strlen
+ *fill*         0x00000000001000ea        0x6 00
+ .text          0x00000000001000f0      0x387 console.o
+                0x0000000000100198                setforeground
+                0x00000000001001df                getforeground
+                0x0000000000100436                clear
+                0x00000000001001f8                move_cursor
+                0x000000000010040f                putc
+                0x00000000001001ba                setbackground
+                0x000000000010026c                kprintf
+                0x00000000001001ee                getbackground
+ *fill*         0x0000000000100477        0x1 00
+ .text          0x0000000000100478       0x1b utils.o
+                0x0000000000100478                inportb
+                0x0000000000100485                outportb
+ *(.text.*)
+ *(.rodata.*)
+ .rodata.str1.1
+                0x0000000000100493        0xe main.o
+ .rodata.str1.1
+                0x00000000001004a1       0x11 console.o
+ *(.rdata.*)
+                0x0000000000101000                . = ALIGN (0x1000)
+ *fill*         0x00000000001004b2      0xb4e 00
+                0x0000000000101000                textEnd = .
+
+.rodata         0x0000000000101000      0x16c
+ .rodata        0x0000000000101000      0x16c console.o
+
+.rel.dyn        0x000000000010116c        0x0
+ .rel.text      0x0000000000000000        0x0 start.o
+
+.data           0x000000000010116c      0xe94
+                0x000000000010116c                dataStart = .
+ *(.data*)
+ .data          0x000000000010116c        0x0 main.o
+ .data          0x000000000010116c        0x0 string.o
+ .data          0x000000000010116c        0x2 console.o
+ *fill*         0x000000000010116e        0x2 00
+ .data          0x0000000000101170        0x0 utils.o
+                0x0000000000102000                . = ALIGN (0x1000)
+ *fill*         0x0000000000101170      0xe90 00
+                0x0000000000102000                dataEnd = .
+
+.bss            0x0000000000102000     0x1000
+                0x0000000000102000                bssStart = .
+ *(.common)
+ *(.bss*)
+ .bss           0x0000000000102000        0x0 main.o
+ .bss           0x0000000000102000        0x0 string.o
+ .bss           0x0000000000102000        0x8 console.o
+ .bss           0x0000000000102008        0x0 utils.o
+                0x0000000000103000                . = ALIGN (0x1000)
+ *fill*         0x0000000000102008      0xff8 00
+                0x0000000000103000                bssEnd = .
+                0x0000000000103000                end = .
+LOAD start.o
+LOAD main.o
+LOAD string.o
+LOAD console.o
+LOAD utils.o
+OUTPUT(../bin/kernel.sys elf32-i386)
+
+.comment        0x0000000000000000       0xd0
+ .comment       0x0000000000000000       0x28 start.o
+ .comment       0x0000000000000028       0x2a main.o
+ .comment       0x0000000000000052       0x2a string.o
+ .comment       0x000000000000007c       0x2a console.o
+ .comment       0x00000000000000a6       0x2a utils.o
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 main.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 string.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 console.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 utils.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000100000                phys = 0x100000
+
+.text           0x0000000000100000     0x1000
+                0x0000000000100000                textStart = .
+ *(.text)
+ .text          0x0000000000100000       0x28 start.o
+                0x0000000000100000                start
+ .text          0x0000000000100028       0x1f main.o
+                0x0000000000100028                main
+ .text          0x0000000000100047       0x8c string.o
+                0x0000000000100047                memcpy
+                0x000000000010006e                memset
+                0x0000000000100091                memsetw
+                0x00000000001000b0                strlen
+ .text          0x00000000001000d3      0x341 console.o
+                0x000000000010015b                setforeground
+                0x0000000000100176                setbackground
+                0x0000000000100194                getforeground
+                0x000000000010019f                getbackground
+                0x00000000001001a5                move_cursor
+                0x00000000001001f4                clear
+                0x0000000000100228                putc
+                0x000000000010024b                kprintf
+ .text          0x0000000000100414        0xa utils.o
+                0x0000000000100414                inportb
+                0x0000000000100418                outportb
+ *(.text.*)
+ *(.rodata.*)
+ .rodata.str1.1
+                0x000000000010041e        0xe main.o
+ .rodata.str1.1
+                0x000000000010042c       0x11 console.o
+ *(.rdata.*)
+                0x0000000000101000                . = ALIGN (0x1000)
+ *fill*         0x000000000010043d      0xbc3 
+                0x0000000000101000                textEnd = .
+
+.eh_frame       0x0000000000101000      0x1c0
+ .eh_frame      0x0000000000101000       0x30 main.o
+ .eh_frame      0x0000000000101030       0x60 string.o
+                                         0x68 (size before relaxing)
+ .eh_frame      0x0000000000101090      0x100 console.o
+ .eh_frame      0x0000000000101190       0x30 utils.o
+                                         0x40 (size before relaxing)
+
+.rodata         0x00000000001011c0      0x2d8
+ .rodata        0x00000000001011c0      0x2d8 console.o
+
+.iplt           0x00000000001014a0        0x0
+ .iplt          0x0000000000000000        0x0 start.o
+
+.rel.dyn        0x0000000000101498        0x0
+ .rel.iplt      0x0000000000000000        0x0 start.o
+ .rel.text      0x0000000000000000        0x0 start.o
+
+.data           0x0000000000101498      0xb68
+                0x0000000000101498                dataStart = .
+ *(.data*)
+ .data          0x0000000000101498        0x0 main.o
+ .data          0x0000000000101498        0x0 string.o
+ .data          0x0000000000101498        0x2 console.o
+ .data          0x000000000010149a        0x0 utils.o
+                0x0000000000102000                . = ALIGN (0x1000)
+ *fill*         0x000000000010149a      0xb66 
+                0x0000000000102000                dataEnd = .
+
+.igot.plt       0x0000000000102000        0x0
+ .igot.plt      0x0000000000000000        0x0 start.o
+
+.bss            0x0000000000102000     0x1000
+                0x0000000000102000                bssStart = .
+ *(.common)
+ *(.bss*)
+ .bss           0x0000000000102000        0x0 main.o
+ .bss           0x0000000000102000        0x0 string.o
+ .bss           0x0000000000102000        0x8 console.o
+ .bss           0x0000000000102008        0x0 utils.o
+                0x0000000000103000                . = ALIGN (0x1000)
+ *fill*         0x0000000000102008      0xff8 
+                0x0000000000103000                bssEnd = .
+                0x0000000000103000                end = .
+LOAD start.o
+LOAD main.o
+LOAD string.o
+LOAD console.o
+LOAD utils.o
+OUTPUT(../bin/kernel.sys elf32-i386)
+
+.comment        0x0000000000000000       0x1d
+ .comment       0x0000000000000000       0x1d main.o
+                                         0x1e (size before relaxing)
+ .comment       0x0000000000000000       0x1e string.o
+ .comment       0x0000000000000000       0x1e console.o
+ .comment       0x0000000000000000       0x1e utils.o
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 main.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 string.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 console.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 utils.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000100000                phys = 0x100000
+
+.text           0x0000000000100000     0x1000
+                0x0000000000100000                textStart = .
+ *(.text)
+ .text          0x0000000000100000       0x28 start.o
+                0x0000000000100000                start
+ .text          0x0000000000100028       0x1f main.o
+                0x0000000000100028                main
+ .text          0x0000000000100047       0x8c string.o
+                0x0000000000100047                memcpy
+                0x000000000010006e                memset
+                0x0000000000100091                memsetw
+                0x00000000001000b0                strlen
+ .text          0x00000000001000d3      0x341 console.o
+                0x000000000010015b                setforeground
+                0x0000000000100176                setbackground
+                0x0000000000100194                getforeground
+                0x000000000010019f                getbackground
+                0x00000000001001a5                move_cursor
+                0x00000000001001f4                clear
+                0x0000000000100228                putc
+                0x000000000010024b                kprintf
+ .text          0x0000000000100414        0xa utils.o
+                0x0000000000100414                inportb
+                0x0000000000100418                outportb
+ *(.text.*)
+ *(.rodata.*)
+ .rodata.str1.1
+                0x000000000010041e        0xe main.o
+ .rodata.str1.1
+                0x000000000010042c       0x11 console.o
+ *(.rdata.*)
+                0x0000000000101000                . = ALIGN (0x1000)
+ *fill*         0x000000000010043d      0xbc3 
+                0x0000000000101000                textEnd = .
+
+.eh_frame       0x0000000000101000      0x1c0
+ .eh_frame      0x0000000000101000       0x30 main.o
+ .eh_frame      0x0000000000101030       0x60 string.o
+                                         0x68 (size before relaxing)
+ .eh_frame      0x0000000000101090      0x100 console.o
+ .eh_frame      0x0000000000101190       0x30 utils.o
+                                         0x40 (size before relaxing)
+
+.rodata         0x00000000001011c0      0x2d8
+ .rodata        0x00000000001011c0      0x2d8 console.o
+
+.iplt           0x00000000001014a0        0x0
+ .iplt          0x0000000000000000        0x0 start.o
+
+.rel.dyn        0x0000000000101498        0x0
+ .rel.iplt      0x0000000000000000        0x0 start.o
+ .rel.text      0x0000000000000000        0x0 start.o
+
+.data           0x0000000000101498      0xb68
+                0x0000000000101498                dataStart = .
+ *(.data*)
+ .data          0x0000000000101498        0x0 main.o
+ .data          0x0000000000101498        0x0 string.o
+ .data          0x0000000000101498        0x2 console.o
+ .data          0x000000000010149a        0x0 utils.o
+                0x0000000000102000                . = ALIGN (0x1000)
+ *fill*         0x000000000010149a      0xb66 
+                0x0000000000102000                dataEnd = .
+
+.igot.plt       0x0000000000102000        0x0
+ .igot.plt      0x0000000000000000        0x0 start.o
+
+.bss            0x0000000000102000     0x1000
+                0x0000000000102000                bssStart = .
+ *(.common)
+ *(.bss*)
+ .bss           0x0000000000102000        0x0 main.o
+ .bss           0x0000000000102000        0x0 string.o
+ .bss           0x0000000000102000        0x8 console.o
+ .bss           0x0000000000102008        0x0 utils.o
+                0x0000000000103000                . = ALIGN (0x1000)
+ *fill*         0x0000000000102008      0xff8 
+                0x0000000000103000                bssEnd = .
+                0x0000000000103000                end = .
+LOAD start.o
+LOAD main.o
+LOAD string.o
+LOAD console.o
+LOAD utils.o
+OUTPUT(../bin/kernel.sys elf32-i386)
+
+.comment        0x0000000000000000       0x1d
+ .comment       0x0000000000000000       0x1d main.o
+                                         0x1e (size before relaxing)
+ .comment       0x0000000000000000       0x1e string.o
+ .comment       0x0000000000000000       0x1e console.o
+ .comment       0x0000000000000000       0x1e utils.o
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 main.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 string.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 console.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 utils.o
