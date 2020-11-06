@@ -2,9 +2,9 @@
 
 TCK-OS é um acrônomo para Tiny C Kernel - Operating System.
 
-Ele é o que chamam de 'ToyOS', comumento usado para treinar técnicas de programação e entender arquitetura de computadores na prática.
+Ele é o que chamam de 'ToyOS', comumente usado para treinar técnicas de programação e entender arquitetura de computadores na prática.
 
-Esse é um projeto antigo e as versões mais adiantadas deste projetos infelizmente foram perdidas (isso foi antes de versionamento de código ser popular e antes do github). Essa é a versão inicial, o famoso "hello world kernel", mas já tem kprintf e uma nano string.h da libc implementada ;).
+Esse é um projeto antigo e as versões mais adiantadas deste projeto infelizmente foram perdidas (isso foi antes de versionamento de código ser popularizar e antes do github). Essa é a versão inicial, o famoso "hello world kernel", mas já tem kprintf e uma nano string.h da libc implementada ;).
 
 ### Tecnologias
 - C
